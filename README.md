@@ -1,27 +1,58 @@
-# ConsumingHttpServices
+# Angular Training Workbench for Consuming HTTP Resources
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
+Angular App that will apply skills learned, specifically in regards the consumption of HTTP resources.
 
-## Development server
+## Summary
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- [Built With](#built-with)
+- [Subjects Demonstrated](#subjects-demonstrated)
+- [Deployment](#deployment)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
 
-## Code scaffolding
+## Built With
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- [Angular](https://angular.io/) - Framework
+- [Angular CLI](https://cli.angular.io/) - Command Line Interface.
+- [Bootstrap](https://getbootstrap.com/)
 
-## Build
+## Subjects Demonstrated
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+May include any or all of the following subjects related to Angular Directives.
 
-## Running unit tests
+- JSONPlaceHolder
+- Getting Data
+- Creating Data
+- Updating Data
+- Deleting Data
+- OnInit Interface
+- Separation of Concerns
+- Extracting a Service
+- Handling Errors
+- Handling Unexpected Errors
+- Handling Expected Errors
+- Throwing Application-specific Errors
+- Handling Bad Request Errors
+- Importing Observable Operators and
+  Factory Methods
+- Global Error Handling
+- Extracting a Reusable Error Handling
+  Method
+- Extracting a Reusable Data Service
+- The Map Operator
+- Optimistic vs Pessimistic Updates
+- Observables vs Promises
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Deployment
 
-## Running end-to-end tests
+- Hosted on [Netlify](https://app.netlify.com/) utilizing [GitHub](https://app.netlify.com/)'s Netlify App
+- URL [https://angular-consuming-http-services.netlify.app/](https://angular-consuming-http-services.netlify.app/)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Authors
 
-## Further help
+- **Curt Grogan** - _Full Stack Web Developer_ -
+  [Curt Grogan](https://github.com/clgrogan)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Acknowledgments
+
+- **Udemy - Angular Crash Course for Busy Developers** - _Provided the bulk of the knowhow on how to work with Angular_ [Udemy](https://www.udemy.com/)
