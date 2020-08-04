@@ -22,7 +22,9 @@ export class PostsComponent implements OnInit {
     );
   }
   createPost(input: HTMLInputElement) {
-    let post: any = { title: input.value };
+    let post: any = {
+      title: input.value,
+    };
     this.postService.createPost(post).subscribe(
       (response: any) => {
         post.id = response.id;
@@ -30,10 +32,18 @@ export class PostsComponent implements OnInit {
         this.posts.splice(0, 0, post);
         input.value = "";
       },
-      (createError: any) => {
-        alert("Unexpected Creation (using post) error.");
-        console.log("Unexpected Creation (using post) error:");
-        console.log(createError);
+      (error: Response) => {
+        if (error.status === 400) {
+          // If we had a form in the template, we can use the response to display the errors
+          // next to the fields in the form using something like
+          // this.form.setErrors(error); //we don't have a form. Not cool @ instructor. Guess I'll  figure it out.
+          alert("error.status === 400");
+          console.log(error);
+        } else {
+          alert("Unexpected error on post creation (using post) error.");
+          console.log("Unexpected error on post creation (using post) error:");
+          console.log(error);
+        }
       }
     );
   }
@@ -86,15 +96,26 @@ export class PostsComponent implements OnInit {
 
   deletePost(post) {
     this.postService.deletePost(post.id).subscribe(
+      // this.postService.deletePost("666/666").subscribe( // use to force a 404.
       (response) => {
         // Need to delete the record (post) locally.
         let i = this.posts.indexOf(post);
         this.posts.splice(i, 1);
       },
-      (error: any) => {
-        alert("Unexpected Deletion error for post id = " + post.id + ".");
-        console.log("Unexpected Deletion error for post id = " + post.id + ":");
-        console.log(error);
+      (error: Response) => {
+        if (error.status === 404) {
+          alert(
+            "Post with id " +
+              post.id +
+              " was not found. The post may have already been deleted."
+          );
+        } else {
+          alert("Unexpected Deletion error for post id = " + post.id + ".");
+          console.log(
+            "Unexpected Deletion error for post id = " + post.id + ":"
+          );
+          console.log(error);
+        }
       }
     );
   }
