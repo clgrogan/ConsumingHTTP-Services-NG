@@ -5,7 +5,7 @@ import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { AppError } from "../common/app-error";
 import { NotFoundError } from "../common/not-found-error";
-import { BadRequestError } from "../common/bad-request-error";
+import { BadInputError } from "../common/bad-input-error";
 
 @Injectable({
   providedIn: "root",
@@ -26,7 +26,7 @@ export class PostService {
         // let fakeErrorStatus = 400;
         // if (fakeErrorStatus === 400) {
         if (error.status === 400) {
-          return throwError(new BadRequestError(error));
+          return throwError(new BadInputError(error));
         } else {
           return throwError(new AppError(error));
         }

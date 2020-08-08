@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { PostService } from "../services/post.service";
 import { AppError } from "../common/app-error";
 import { NotFoundError } from "../common/not-found-error";
-import { BadRequestError } from "../common/bad-request-error";
+import { BadInputError } from "../common/bad-input-error";
 @Component({
   selector: "posts",
   templateUrl: "./posts.component.html",
@@ -36,7 +36,7 @@ export class PostsComponent implements OnInit {
         input.value = "";
       },
       (error: AppError) => {
-        if (error instanceof BadRequestError) {
+        if (error instanceof BadInputError) {
           // If we had a form in the template, we can use the response to display the errors
           // next to the fields in the form using something like
           // this.form.setErrors(error); //we don't have a form. Not cool @ instructor. Guess I'll  figure it out.
