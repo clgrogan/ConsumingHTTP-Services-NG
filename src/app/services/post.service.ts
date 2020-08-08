@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+
+import { catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
+import { AppError } from "../common/app-error";
+import { NotFoundError } from "../common/not-found-error";
+import { BadRequestError } from "../common/bad-request-error";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +21,17 @@ export class PostService {
   }
 
   createPost(post: any) {
-    return this.http.post(this.jsonUrl, post);
+    return this.http.post(this.jsonUrl, post).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // let fakeErrorStatus = 400;
+        // if (fakeErrorStatus === 400) {
+        if (error.status === 400) {
+          return throwError(new BadRequestError(error));
+        } else {
+          return throwError(new AppError(error));
+        }
+      })
+    );
   }
 
   updatePostPatch(post: any) {
@@ -31,6 +47,17 @@ export class PostService {
   }
 
   deletePost(id: string) {
-    return this.http.delete(this.jsonUrl + "/" + id);
+    return this.http.delete(this.jsonUrl + "/" + id).pipe(
+      catchError((error: Response) => {
+        if (error.status === 404) {
+          console.log(error.status);
+          //No need to return the error response from the API since this is an expected error.
+          return throwError(new NotFoundError());
+          // return Observable.throw(new NotFoundError());
+        } else {
+          return throwError(new AppError(error));
+        }
+      })
+    );
   }
 }

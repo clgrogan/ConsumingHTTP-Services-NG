@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { PostService } from "../services/post.service";
+import { AppError } from "../common/app-error";
+import { NotFoundError } from "../common/not-found-error";
+import { BadRequestError } from "../common/bad-request-error";
 @Component({
   selector: "posts",
   templateUrl: "./posts.component.html",
@@ -32,8 +35,8 @@ export class PostsComponent implements OnInit {
         this.posts.splice(0, 0, post);
         input.value = "";
       },
-      (error: Response) => {
-        if (error.status === 400) {
+      (error: AppError) => {
+        if (error instanceof BadRequestError) {
           // If we had a form in the template, we can use the response to display the errors
           // next to the fields in the form using something like
           // this.form.setErrors(error); //we don't have a form. Not cool @ instructor. Guess I'll  figure it out.
@@ -95,28 +98,30 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post) {
-    this.postService.deletePost(post.id).subscribe(
-      // this.postService.deletePost("666/666").subscribe( // use to force a 404.
-      (response) => {
-        // Need to delete the record (post) locally.
-        let i = this.posts.indexOf(post);
-        this.posts.splice(i, 1);
-      },
-      (error: Response) => {
-        if (error.status === 404) {
-          alert(
-            "Post with id " +
-              post.id +
-              " was not found. The post may have already been deleted."
-          );
-        } else {
-          alert("Unexpected Deletion error for post id = " + post.id + ".");
-          console.log(
-            "Unexpected Deletion error for post id = " + post.id + ":"
-          );
-          console.log(error);
+    this.postService
+      .deletePost(post.id)
+      // .deletePost("666/666") // use to force a 404.
+      .subscribe(
+        (response) => {
+          // Need to delete the record (post) locally.
+          let i = this.posts.indexOf(post);
+          this.posts.splice(i, 1);
+        },
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
+            alert(
+              "Post with id " +
+                post.id +
+                " was not found. The post may have already been deleted."
+            );
+          } else {
+            alert("Unexpected Deletion error for post id = " + post.id + ".");
+            console.log(
+              "Unexpected Deletion error for post id = " + post.id + ":"
+            );
+            console.log(error);
+          }
         }
-      }
-    );
+      );
   }
 }
