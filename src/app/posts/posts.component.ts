@@ -17,11 +17,12 @@ export class PostsComponent implements OnInit {
         // this.posts = response; //works but gives warning in VS Code about the action
         this.posts = response as any;
         console.log(this.posts);
-      },
-      (getError: any) => {
-        alert("An unexpected error occurred when getting the posts!");
-        console.log(getError);
       }
+      // ,
+      // (getError: AppError) => {
+      //   alert("An unexpected error occurred when getting the posts!");
+      //   console.log(getError);
+      // }
     );
   }
   createPost(input: HTMLInputElement) {
@@ -40,61 +41,27 @@ export class PostsComponent implements OnInit {
           // If we had a form in the template, we can use the response to display the errors
           // next to the fields in the form using something like
           // this.form.setErrors(error); //we don't have a form. Not cool @ instructor. Guess I'll  figure it out.
-          alert("error.status === 400");
-          console.log(error);
-        } else {
-          alert("Unexpected error on post creation (using post) error.");
-          console.log("Unexpected error on post creation (using post) error:");
-          console.log(error);
-        }
+          alert("Bad input: \n  error.status === 400");
+          // IF we had a form use the next line of code.
+          // this.form.setErrors(error.originalError);
+        } else throw error;
       }
     );
   }
 
   updatePost(post) {
-    this.postService.updatePostPatch(post).subscribe(
-      (response) => {
-        console.log("updatePost - PATCH: ", response);
-      },
-      (error: any) => {
-        alert("Unexpected Update (using PATCH) error for post id = " + post.id);
-        console.log(
-          "Unexpected Update (using PATCH) error for post id = " + post.id
-        );
-        console.log(error);
-      }
-    );
+    this.postService.updatePostPatch(post).subscribe((response) => {
+      console.log("updatePost - PATCH: ", response);
+    });
 
     post["isRead"] = true;
-    this.postService.updatePostPut(post).subscribe(
-      (response) => {
-        console.log("updatePost - PUT: ", response);
-      },
-      (error: any) => {
-        alert("Unexpected Update (using PUT) error for post id = " + post.id);
-        console.log(
-          "Unexpected Update (using PUT) error for post id = " + post.id
-        );
-        console.log(error);
-      }
-    );
+    this.postService.updatePostPut(post).subscribe((response) => {
+      console.log("updatePost - PUT: ", response);
+    });
 
-    this.postService.updatePostPutStringified(post).subscribe(
-      (response) => {
-        console.log("updatePostStringified - PUT: ", response);
-      },
-      (error: any) => {
-        alert(
-          "Unexpected Update (using PUT with stringified object) error for post id = " +
-            post.id
-        );
-        console.log(
-          "Unexpected Update (using PUT with stringified object) error for post id = " +
-            post.id
-        );
-        console.log(error);
-      }
-    );
+    this.postService.updatePostPutStringified(post).subscribe((response) => {
+      console.log("updatePostStringified - PUT: ", response);
+    });
   }
 
   deletePost(post) {
@@ -114,13 +81,14 @@ export class PostsComponent implements OnInit {
                 post.id +
                 " was not found. The post may have already been deleted."
             );
-          } else {
-            alert("Unexpected Deletion error for post id = " + post.id + ".");
-            console.log(
-              "Unexpected Deletion error for post id = " + post.id + ":"
-            );
-            console.log(error);
-          }
+          } else throw error;
+          // {
+          //   alert("Unexpected Deletion error for post id = " + post.id + ".");
+          //   console.log(
+          //     "Unexpected Deletion error for post id = " + post.id + ":"
+          //   );
+          //   console.log(error);
+          // }
         }
       );
   }
