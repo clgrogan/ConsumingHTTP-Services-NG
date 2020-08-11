@@ -3,6 +3,7 @@ import { PostService } from "../services/post.service";
 import { AppError } from "../common/app-error";
 import { NotFoundError } from "../common/not-found-error";
 import { BadInputError } from "../common/bad-input-error";
+import { InternalServerError } from "../common/internal-server-error";
 @Component({
   selector: "posts",
   templateUrl: "./posts.component.html",
@@ -12,7 +13,7 @@ export class PostsComponent implements OnInit {
 
   constructor(private postService: PostService) {}
   ngOnInit() {
-    this.postService.getPosts().subscribe(
+    this.postService.getAll().subscribe(
       (response) => {
         // this.posts = response; //works but gives warning in VS Code about the action
         this.posts = response as any;
@@ -29,7 +30,7 @@ export class PostsComponent implements OnInit {
     let post: any = {
       title: input.value,
     };
-    this.postService.createPost(post).subscribe(
+    this.postService.create(post).subscribe(
       (response: any) => {
         post.id = response.id;
         post["id2"] = response.id;
@@ -50,23 +51,44 @@ export class PostsComponent implements OnInit {
   }
 
   updatePost(post) {
-    this.postService.updatePostPatch(post).subscribe((response) => {
-      console.log("updatePost - PATCH: ", response);
-    });
+    this.postService.updatePatch(post).subscribe(
+      (response) => {
+        console.log("updatePost - PATCH: ", response);
+      },
+      (error: AppError) => {
+        if (error instanceof InternalServerError) {
+          alert("Internal Server Error for Post ID " + post.id + ".");
+        } else throw error;
+      }
+    );
 
     post["isRead"] = true;
-    this.postService.updatePostPut(post).subscribe((response) => {
-      console.log("updatePost - PUT: ", response);
-    });
+    this.postService.updatePut(post).subscribe(
+      (response) => {
+        console.log("updatePost - PUT: ", response);
+      },
+      (error: AppError) => {
+        if (error instanceof InternalServerError) {
+          alert("Internal Server Error for Post ID " + post.id + ".");
+        } else throw error;
+      }
+    );
 
-    this.postService.updatePostPutStringified(post).subscribe((response) => {
-      console.log("updatePostStringified - PUT: ", response);
-    });
+    this.postService.updatePutStringified(post).subscribe(
+      (response) => {
+        console.log("updatePostStringified - PUT: ", response);
+      },
+      (error: AppError) => {
+        if (error instanceof InternalServerError) {
+          alert("Internal Server Error for Post ID " + post.id + ".");
+        } else throw error;
+      }
+    );
   }
 
   deletePost(post) {
     this.postService
-      .deletePost(post.id)
+      .delete(post.id)
       // .deletePost("666/666") // use to force a 404.
       .subscribe(
         (response) => {
