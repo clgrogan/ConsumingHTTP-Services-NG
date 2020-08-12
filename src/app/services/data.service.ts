@@ -1,7 +1,6 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-
 import { catchError } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { throwError } from "rxjs";
 import { NotFoundError } from "../common/not-found-error";
 import { BadInputError } from "../common/bad-input-error";
@@ -18,7 +17,10 @@ export class DataService {
   ) {}
 
   getAll() {
-    return this.http.get(this.jsonUrl).pipe(catchError(this.handleError));
+    return this.http.get(this.jsonUrl).pipe(
+      map((response) => response),
+      catchError(this.handleError)
+    );
   }
 
   create(resource: any) {

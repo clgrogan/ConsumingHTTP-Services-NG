@@ -14,9 +14,8 @@ export class PostsComponent implements OnInit {
   constructor(private postService: PostService) {}
   ngOnInit() {
     this.postService.getAll().subscribe(
-      (response) => {
-        // this.posts = response; //works but gives warning in VS Code about the action
-        this.posts = response as any;
+      (posts) => {
+        this.posts = posts as Array<Object>;
         console.log(this.posts);
       }
       // ,
