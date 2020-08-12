@@ -29,18 +29,22 @@ export class PostsComponent implements OnInit {
     let post: any = {
       title: input.value,
     };
+    this.posts.splice(0, 0, post); // Optimistic update before API call
+
+    input.value = "";
+
     this.postService.create(post).subscribe(
       (response: any) => {
         post.id = response.id;
         post["id2"] = response.id;
-        this.posts.splice(0, 0, post);
-        input.value = "";
+        // this.posts.splice(0, 0, post); // Pessimistic Update after successful response received.
       },
       (error: AppError) => {
+        this.posts.splice(0, 1);
         if (error instanceof BadInputError) {
           // If we had a form in the template, we can use the response to display the errors
           // next to the fields in the form using something like
-          // this.form.setErrors(error); //we don't have a form. Not cool @ instructor. Guess I'll  figure it out.
+          // this.form.setErrors(error); //we don't have a form.
           alert("Bad input: \n  error.status === 400");
           // IF we had a form use the next line of code.
           // this.form.setErrors(error.originalError);
@@ -86,16 +90,20 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post) {
+    let i = this.posts.indexOf(post);
+    this.posts.splice(i, 1);
+
     this.postService
       .delete(post.id)
-      // .deletePost("666/666") // use to force a 404.
+      // .delete("666/666") // use to force a 404.
       .subscribe(
         (response) => {
           // Need to delete the record (post) locally.
-          let i = this.posts.indexOf(post);
-          this.posts.splice(i, 1);
+          // let i = this.posts.indexOf(post);
+          // this.posts.splice(i, 1);
         },
         (error: AppError) => {
+          this.posts.splice(i, 0, post);
           if (error instanceof NotFoundError) {
             alert(
               "Post with id " +
