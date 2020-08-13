@@ -12,13 +12,13 @@ Angular App that will apply skills learned, specifically in regards the consumpt
 
 ## Built With
 
-- [Angular](https://angular.io/) - Framework
+- [Angular](https://angular.io/) - Typescript-based Framework
 - [Angular CLI](https://cli.angular.io/) - Command Line Interface.
-- [Bootstrap](https://getbootstrap.com/)
+- [Bootstrap](https://getbootstrap.com/) - CSS-based Framework
 
 ## Subjects Demonstrated
 
-May include any or all of the following subjects related to Angular Directives.
+May include any or all of the following subjects related to Angular HTTP Service consumption.
 
 - JSONPlaceHolder
 - Getting Data
@@ -50,9 +50,11 @@ May include any or all of the following subjects related to Angular Directives.
 
 ## Authors
 
-- **Curt Grogan** - _Full Stack Web Developer_ -
-  [Curt Grogan](https://github.com/clgrogan)
+**[Curt Grogan](https://github.com/clgrogan)** - Full Stack Web Developer
+
+- GitHub: [github.com/clgrogan](https://github.com/clgrogan)
+- LinkedIn: [www.linkedin.com/in/curtgrogan/](https://www.linkedin.com/in/curtgrogan/)
 
 ## Acknowledgments
 
-- **Udemy - Angular Crash Course for Busy Developers** - _Provided the bulk of the knowhow on how to work with Angular_ [Udemy](https://www.udemy.com/)
+**[Udemy - Angular Crash Course](https://www.udemy.com/course/angular-crash-course/)** by _Mosh Hamedani_ - Via this course, they provided the instruction that helped develop the knowhow on working with Angular
