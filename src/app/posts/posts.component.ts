@@ -89,6 +89,11 @@ export class PostsComponent implements OnInit {
     );
   }
 
+  // deletePost(post) {
+  //   // Used to demonstrate the difference between Promise and Observable objects.
+  //   this.postService.delete(post.id);
+  // }
+
   deletePost(post) {
     let i = this.posts.indexOf(post);
     this.posts.splice(i, 1);
@@ -96,29 +101,15 @@ export class PostsComponent implements OnInit {
     this.postService
       .delete(post.id)
       // .delete("666/666") // use to force a 404.
-      .subscribe(
-        (response) => {
-          // Need to delete the record (post) locally.
-          // let i = this.posts.indexOf(post);
-          // this.posts.splice(i, 1);
-        },
-        (error: AppError) => {
-          this.posts.splice(i, 0, post);
-          if (error instanceof NotFoundError) {
-            alert(
-              "Post with id " +
-                post.id +
-                " was not found. The post may have already been deleted."
-            );
-          } else throw error;
-          // {
-          //   alert("Unexpected Deletion error for post id = " + post.id + ".");
-          //   console.log(
-          //     "Unexpected Deletion error for post id = " + post.id + ":"
-          //   );
-          //   console.log(error);
-          // }
-        }
-      );
+      .subscribe((response) => (error: AppError) => {
+        this.posts.splice(i, 0, post);
+        if (error instanceof NotFoundError) {
+          alert(
+            "Post with id " +
+              post.id +
+              " was not found. The post may have already been deleted."
+          );
+        } else throw error; // Global Error Handler will catch.
+      });
   }
 }

@@ -1,14 +1,11 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
-import { map } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { map, retry } from "rxjs/operators";
+import { throwError, Observable } from "rxjs";
 import { NotFoundError } from "../common/not-found-error";
 import { BadInputError } from "../common/bad-input-error";
 import { InternalServerError } from "../common/internal-server-error";
 
-// @Injectable({
-//   providedIn: "root",
-// })
 export class DataService {
   constructor(
     private jsonUrl: string,
@@ -48,9 +45,15 @@ export class DataService {
   }
 
   delete(id: string) {
-    return this.http
+    console.log("'delete()' method was called.");
+    const returnObject: Observable<Object> = this.http
       .delete(this.jsonUrl + "/" + id)
-      .pipe(catchError(this.handleError));
+      .pipe(retry(3));
+    // Code to demo the return of a Promise instead of an Observable object.
+    // const returnObject: Promise<Object> = this.http
+    //   .delete(this.jsonUrl + "/" + id)
+    //   .toPromise();
+    return returnObject;
   }
   private handleError(error: HttpErrorResponse) {
     if (error.status === 400) {
