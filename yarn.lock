@@ -186,6 +186,13 @@
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-9.0.7.tgz#2445d6893d9264f9ba1c463ed3802c2a63174114"
   integrity sha512-PaHAmjMJDtg/3aGCPuq5BCRC1eZ/DBCpva9f7NrA1kqk0LcLdebm0v2uHwTOBtiz/VEgPvxiS4tXC4rjvUtfEg==
 
+"@angular/http@^7.2.16":
+  version "7.2.16"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.2.16.tgz#f05337dd56faa86ce05b0dc378218a00fb337040"
+  integrity sha512-yvjbNyzFSmmz4UTjCdy5M8mk0cZqf9TvSf8yN5UVIwtw4joyuUdlgJCuin0qSbQOKIf/JjHoofpO2JkPCGSNww==
+  dependencies:
+    tslib "^1.9.0"
+
 "@angular/language-service@~9.0.1":
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-9.0.7.tgz#c204467383ee5f194a73a365ea7c543c6900bb54"
@@ -1680,6 +1687,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap@^4.5.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
+  integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -5955,9 +5967,9 @@ path-key@^2.0.0, path-key@^2.0.1:
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
-  integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
+  integrity sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==
 
 path-to-regexp@0.1.7:
   version "0.1.7"
