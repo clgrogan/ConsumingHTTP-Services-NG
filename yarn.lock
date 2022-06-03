@@ -176,15 +176,24 @@
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-9.0.7.tgz#3cf8f9f6dc6e787506a0bc9444c4abb857bb1068"
   integrity sha512-hFpkuGpzxpK5h59LHHAjTFWsY6DCXZwgJFqvCuTPxWi/srvLGZRXrpC6Z1SlgHI9xxXaPfoa4uWw2VfA3BnqEg==
 
-"@angular/core@~9.0.1":
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.0.7.tgz#f75f4ed8ea721f44c9df77502fd114a88db988e3"
-  integrity sha512-E9XZH5Dl+9MWG3MDC6wrKllhA8Rljpz66HOIeqKv2fHPed8kzuJZU3WJWLtbhDAXFwtGTyTZ4c82ZLSmqwTorg==
+"@angular/core@~11.0.5":
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-11.0.5.tgz#b8c448c3cd4f6dae7327cc1ba4ee2aa29c8dbc26"
+  integrity sha512-XAXWQi7R3ucZXQwx9QK5jSKJeQyRJ53u2dQDpr7R5stzeCy1a5hrNOkZLg9zOTTPcth/6+FrOrRZP9SMdxtw3w==
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/forms@~9.0.1":
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-9.0.7.tgz#2445d6893d9264f9ba1c463ed3802c2a63174114"
   integrity sha512-PaHAmjMJDtg/3aGCPuq5BCRC1eZ/DBCpva9f7NrA1kqk0LcLdebm0v2uHwTOBtiz/VEgPvxiS4tXC4rjvUtfEg==
+
+"@angular/http@^7.2.16":
+  version "7.2.16"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.2.16.tgz#f05337dd56faa86ce05b0dc378218a00fb337040"
+  integrity sha512-yvjbNyzFSmmz4UTjCdy5M8mk0cZqf9TvSf8yN5UVIwtw4joyuUdlgJCuin0qSbQOKIf/JjHoofpO2JkPCGSNww==
+  dependencies:
+    tslib "^1.9.0"
 
 "@angular/language-service@~9.0.1":
   version "9.0.7"
@@ -1680,6 +1689,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
+
+bootstrap@^4.5.0:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.1.tgz#bc25380c2c14192374e8dec07cf01b2742d222a2"
+  integrity sha512-0dj+VgI9Ecom+rvvpNZ4MUZJz8dcX7WCX+eTID9+/8HgOkv3dsRzi8BGeZJCQU6flWQVYxwTQnEZFrmJSEO7og==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -7936,6 +7950,11 @@ tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.0.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tslint@~5.18.0:
   version "5.18.0"
